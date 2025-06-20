@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <mat-card class="p-4 shadow rounded">
+    <form (ngSubmit)="addtrajet()">
+      <h4 class="text-center mb-4 text-primary">Ajouter un trajet</h4>
+
+      <mat-form-field appearance="fill" class="w-100 mb-3">
+        <mat-label>Lieu de Départ</mat-label>
+        <input matInput placeholder="Départ" [(ngModel)]="data.lieuDepart" name="depart">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-100 mb-3">
+        <mat-label>Destination Finale</mat-label>
+        <input matInput placeholder="Destination" [(ngModel)]="data.destinationFinal" name="desfinal">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-100 mb-3">
+        <mat-label>Capacité</mat-label>
+        <input matInput placeholder="Capacité" [(ngModel)]="data.capacite" name="capacite">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-100 mb-3">
+        <mat-label>Dimensions Acceptées</mat-label>
+        <input matInput placeholder="Dimensions" [(ngModel)]="data.dimensionAccepte" name="dimension">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-100 mb-3">
+        <mat-label>Étapes Intermédiaires</mat-label>
+        <input matInput placeholder="Étapes" [(ngModel)]="data.etapesIntermediaire" name="etapes">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-100 mb-3">
+        <mat-label>Type de Marchandise</mat-label>
+        <input matInput placeholder="Marchandise" [(ngModel)]="data.typeMarchandise" name="type">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-100 mb-3">
+        <mat-label>ID Conducteur</mat-label>
+        <input matInput placeholder="Identifiant" [(ngModel)]="data.conducteurId" name="conid">
+      </mat-form-field>
+
+      <div class="text-center mt-4">
+        <button mat-raised-button color="accent" type="submit">Ajouter</button>
+      </div>
+    </form>
+  </mat-card>
+</div>
