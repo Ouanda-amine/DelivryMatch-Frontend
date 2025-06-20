@@ -1,0 +1,6 @@
+.hero {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  color: white;
+  text-shadow: 1px 1px 2px #000;
+}

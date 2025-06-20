@@ -4,6 +4,8 @@ import {FormsModule} from '@angular/forms';
 import {MatFormField} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
+import {Abonne} from '../../model/abonne';
+import {TokenHandlerService} from '../../service/token-handler.service';
 
 @Component({
   selector: 'app-login',
@@ -18,15 +20,12 @@ import {MatButton} from '@angular/material/button';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private service : LoginService) {
+  constructor(private service : LoginService , private tokenhandler : TokenHandlerService) {
   }
 
-  ngOnInit() {
-    console.log("//////////////////")
 
-  }
 
-  Infos = {
+  Infos : Abonne = {
     email : "",
     password: ""
   }

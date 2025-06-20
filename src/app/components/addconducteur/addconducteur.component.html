@@ -1,0 +1,43 @@
+
+<body>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+<form (ngSubmit)="AddConducteur()" class="signup-form card p-4 shadow">
+  <h2 class="text-center mb-4">Inscription</h2>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Prénom</mat-label>
+        <input matInput placeholder="Entrez votre prénom" [(ngModel)]="data.firstName" name="firstName" required>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 mb-3">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Nom</mat-label>
+        <input matInput placeholder="Entrez votre nom" [(ngModel)]="data.lastName" name="lastName" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Entrez votre email" [(ngModel)]="data.email" name="email" required>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 mb-3">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" placeholder="Entrez votre mot de passe" [(ngModel)]="data.password" name="password" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary" type="submit" class="w-100">S'inscrire</button>
+</form>
+</div>
+</body>
+
+

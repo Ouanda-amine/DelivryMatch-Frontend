@@ -21,7 +21,6 @@ export class TrajetService {
 
 
   getAllTrajets(): Observable<any> {
-    console.log(this.setUpHeaders())
     return this.http.get("http://localhost:8080/api/v1/AllTrajets", { headers: this.setUpHeaders() })
   }
 

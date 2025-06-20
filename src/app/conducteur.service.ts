@@ -1,23 +1,31 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {TokenHandlerService} from './service/token-handler.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConducteurService {
 
-  constructor(private  http : HttpClient) {  }
+  token: string | null = "";
 
-  token : string = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJaWkBnbWFpbC5jb20iLCJpYXQiOjE3NTAzNDExNTQsImV4cCI6MTc1MDQyNzU1NH0.SWL4X0QZcMQPOyKT5hM_W0HsFJZe9tk31UHB8zKkQSU";
-  headers =new HttpHeaders({'Authorization' : `Bearer ${this.token}`});
+  constructor(private  http : HttpClient , private tokenHandler : TokenHandlerService) {  }
 
-  getAllConducteurs(): Observable<any> {
-    return this.http.get("http://localhost:8080/api/v1/AllConducteurs", { headers: this.headers })
+
+
+  setUpHeaders(): any{
+    this.token = this.tokenHandler.getAuthResponse();
+    return new HttpHeaders({'Authorization': `Bearer ${this.token}`});
   }
 
-  addConduteur(data : any): Observable<any> {
-    return this.http.post("http://localhost:8080/api/v1/AddConducteur",data , {headers: this.headers })
+
+  getAllConducteurs(): Observable<any> {
+    return this.http.get("http://localhost:8080/api/v1/AllConducteurs", { headers: this.setUpHeaders() })
+  }
+
+  addConducteur(data : any): Observable<any> {
+    return this.http.post("http://localhost:8080/api/v1/AddTrajet",data , {headers: this.setUpHeaders() })
   }
 
 

@@ -42,7 +42,7 @@ export class RegisterComponent  implements OnInit{
        if (result){
          console.log(result)
          this.tokenHandler.setAuthResponse(result);
-        // this.router.navigate(['/home'])
+         this.router.navigate(['/login'])
        }
       }
     )
