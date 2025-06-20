@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TrajetService} from '../../trajet.service';
 import {NgForOf} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {MatToolbar, MatToolbarRow} from '@angular/material/toolbar';
-import {MatButton, MatIconButton} from '@angular/material/button';
+import {MatButton, MatFabButton, MatIconButton} from '@angular/material/button';
 import {MatCardContent, MatCardFooter, MatCardHeader, MatCardModule} from '@angular/material/card';
 import {MatChip, MatChipSet} from '@angular/material/chips';
 import { MatInput } from '@angular/material/input';
 import {MatIcon} from '@angular/material/icon';
+import {MatButtonToggle} from '@angular/material/button-toggle';
 
 interface trajjet{
   "id": number,
@@ -24,7 +25,7 @@ interface trajjet{
   selector: 'app-trajet',
   standalone: true,
   imports: [
-    NgForOf ,
+    NgForOf,
     MatToolbar,
     MatButton,
     MatCardModule,
@@ -39,14 +40,17 @@ interface trajjet{
     MatInput,
     MatIconButton,
     MatIcon,
-    MatIcon
+    MatIcon,
+    MatFabButton,
+    MatButtonToggle
   ],
   templateUrl: './trajet.component.html',
   styleUrl: './trajet.component.css'
 })
-export class TrajetComponent {
+export class TrajetComponent implements OnInit{
 
   array : trajjet[] = [];
+  filter = [...this.array]
   constructor(private  service : TrajetService) {
 
   }
@@ -55,8 +59,18 @@ export class TrajetComponent {
     this.service.getAllTrajets().subscribe(data=>{
 
         this.array=data;
+        this.filter=[...this.array]
       }
     )
   }
+
+  filtrer(search : string){
+    this.filter=this.array.filter((trajet)=>
+      trajet.lieuDepart.toLowerCase().includes(search.toLowerCase()) ||
+        trajet.destinationFinal.toLowerCase().includes(search.toLowerCase())
+
+    )
+  }
+
 
 }

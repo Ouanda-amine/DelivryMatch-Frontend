@@ -1,0 +1,17 @@
+<div class="card-container">
+  <mat-card class="example-card" appearance="outlined" *ngFor="let c of ConducteurArray">
+    <mat-icon >person</mat-icon>
+    <mat-card-header>
+      <mat-card-title>{{c.firstName}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-header>
+      <mat-card-title>{{c.lastName}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-footer class="example-card-footer">
+      <mat-chip-set aria-label="Event type">
+        <!--        <mat-chip>{{c.}}</mat-chip>-->
+      </mat-chip-set>
+    </mat-card-footer>
+  </mat-card>
+
+</div>

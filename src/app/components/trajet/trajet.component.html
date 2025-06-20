@@ -1,10 +1,28 @@
 <div class="container mt-4">
-  <button mat-fab color="accent" class="mb-3" routerLink="addtrajet">
-    <mat-icon>add</mat-icon>
-  </button>
+
+  <div class="row">
+    <button mat-fab color="primary" class="col-sm-2mb-3" routerLink="addtrajet">
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <input matInput type="search"
+           class="col-sm-10"
+           id="sr"
+           #srr
+           (input)="filtrer(srr.value)"
+    >
+    <button mat-icon-button color="primary" (click)="filtrer(srr.value)">
+      <mat-icon>search</mat-icon>
+    </button>
+
+
+
+
+
+  </div>
 
   <div class="card-container">
-    <mat-card class="example-card mb-4 p-3 shadow-sm" *ngFor="let a of array">
+    <mat-card class="example-card mb-4 p-3 shadow-sm" *ngFor="let a of filter">
       <mat-card-header class="d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
           <mat-icon color="primary" class="me-2">local_shipping</mat-icon>
@@ -23,9 +41,7 @@
       </mat-card-content>
 
       <mat-card-footer class="mt-3">
-        <mat-chip-set aria-label="Type de demande">
-          <mat-chip color="primary" selected>Demande</mat-chip>
-        </mat-chip-set>
+        <mat-button-toggle>Demander</mat-button-toggle>
       </mat-card-footer>
     </mat-card>
   </div>

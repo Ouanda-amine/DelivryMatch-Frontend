@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RegisterService} from '../../register.service';
 import {Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatButton} from '@angular/material/button';
 import {MatInput} from '@angular/material/input';
+import {AuthResponse} from '../../model/auth-response';
+import {TokenHandlerService} from '../../service/token-handler.service';
+import {User} from '../../model/user';
 
 @Component({
   selector: 'app-register',
@@ -19,14 +22,14 @@ import {MatInput} from '@angular/material/input';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent {
+export class RegisterComponent  implements OnInit{
 
-  constructor(private service : RegisterService , private  router :Router) {
+  constructor(private service : RegisterService , private  router :Router, private tokenHandler: TokenHandlerService) {
 
 
   }
 
-  data={
+  data: User={
     firstName:"",
     lastName : "",
     email : "",
@@ -34,12 +37,19 @@ export class RegisterComponent {
     role : "ADMIN"
   }
 
-  SignUp(){
-    this.service.signUp(this.data).subscribe({
-      next : (result)=>{
-        this.router.navigate(['/home'])
+  SignUp() {
+    this.service.signUp(this.data).subscribe((result: AuthResponse) => {
+       if (result){
+         console.log(result)
+         this.tokenHandler.setAuthResponse(result);
+        // this.router.navigate(['/home'])
+       }
       }
-    })
+    )
+  }
+
+  ngOnInit(): void {
+
   }
 
 }
